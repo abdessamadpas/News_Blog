@@ -15,10 +15,9 @@
   
 <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
+    {% for category in categories %}
+    <li><a href="#!">{{category.title}}</a></li>
+    {% endfor %}
   </ul>
   <nav>
     <div class="nav-wrapper">
@@ -40,51 +39,23 @@
       <h4>latest posts</h4><hr>
       <!-- image card-->
       <div class="row">
+        {% for article in articles %}
         <div class="col s12 m4">
           <div class="card">
             <div class="card-image">
-              <img src="{% static 'images/background1.jpg'%}">
-              <span class="card-title">Card Title</span>
+              <img src="{{article.picture.url}}">
+              <span class="card-title">{{article.title}}</span>
             </div>
             <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <p>{{article.content}}</p>
             </div>
             <div class="card-action">
               <a href="#">This is a link</a>
             </div>
           </div>
         </div>
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="{% static 'images/background1.jpg'%}">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="{% static 'images/background1.jpg'%}">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+      
       </div>
       
   <
