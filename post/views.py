@@ -45,3 +45,12 @@ def tags(request, tag_slug):
         'categories': categories,
     }
     return HttpResponse(template.render(context, request))
+
+def PostDetail(request, slug):
+    article = get_object_or_404(Post, slug=slug)
+    template = loader.get_template('post_detail.html')
+    
+    context = {
+        'article': article,
+    }
+    return HttpResponse(template.render(context, request))

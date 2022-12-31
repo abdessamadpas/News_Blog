@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -14,6 +15,10 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'categories'
         verbose_name_plural = 'category'
+
+    def get_absolute_url(self):
+        return reverse('category', args={self.slug})
+    
     def __str__(self):
         return self.title
 
@@ -26,6 +31,8 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'tags'
         verbose_name_plural = 'tag'
+    def get_absolute_url(self):
+        return reverse('tag', args={self.slug})
     def __str__(self):
         return self.title
 
@@ -44,6 +51,8 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'posts'
         verbose_name_plural = 'post'
-
+    def get_absolute_url(self):
+        return reverse('post_detail', args={self.slug})
+    
     def __str__(self):
         return self.title
