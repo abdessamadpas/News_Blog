@@ -22,6 +22,10 @@ class Category(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=100, verbose_name='title')
     slug= models.SlugField(max_length=150, unique=True, verbose_name='slug')
+    
+    class Meta:
+        verbose_name = 'tags'
+        verbose_name_plural = 'tag'
     def __str__(self):
         return self.title
 
@@ -36,7 +40,10 @@ class Post(models.Model):
     content = models.TextField(verbose_name='content')
     author = models.CharField( max_length=50, default = 'Anonymous', verbose_name='author')
     tags = models.ManyToManyField('Tag', blank=True)
-       
     
+    class Meta:
+        verbose_name = 'posts'
+        verbose_name_plural = 'post'
+
     def __str__(self):
         return self.title
