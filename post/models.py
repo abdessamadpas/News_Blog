@@ -11,6 +11,9 @@ STATUS_CHOISES=(
 class Category(models.Model):
     title = models.CharField(max_length=100, verbose_name='title')
     slug= models.SlugField(max_length=150, unique=True, verbose_name='slug')
+    class Meta:
+        verbose_name = 'categories'
+        verbose_name_plural = 'category'
     def __str__(self):
         return self.title
 
