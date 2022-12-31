@@ -31,7 +31,7 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='category')
     picture = models.ImageField(upload_to='uploads/%Y/%m/%d', verbose_name='picture')
     content = models.TextField(verbose_name='content')
-    author = models.models.CharField( max_length=50, default = 'Anonymous', verbose_name='author')
+    author = models.CharField( max_length=50, default = 'Anonymous', verbose_name='author')
     tags = models.ManyToManyField('Tag', blank=True)
        
     
