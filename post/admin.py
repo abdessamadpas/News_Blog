@@ -10,7 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_filter= ('status', 'category', 'tags')
-    list_display = ('title', 'status', 'category', 'publication_date')
+    list_display = ('title','slug','status', 'category', 'publication_date')
 
 class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
