@@ -1,4 +1,4 @@
-{% load static %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <<link href="{%static 'css/materialize.css' %} " type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{%static 'css/materialize.css' %} " type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{%static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
@@ -31,70 +31,12 @@
     </div>
   </nav>
         
-  <div class="row">
-        <div class="col s12 center-align" style= 'background-color : #ddd'>
-          <i class='material-icons medium '>label</i>
-          <h5>-----tags -------</h5>
-          <h5> technology h5>
-        </div>
-      </div>
+  
 
-
+  {% block banner %}{% endblock banner %}
   <div class="container">
     <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="background1.jpg">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="background1.jpg">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="background1.jpg">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-  <
-            
-            
-     
-
+      {% block content %}{% endblock content %}
     </div>
   </div>
 
@@ -141,8 +83,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{% static 'js/materialize.js'%}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
 
   </body>
 </html>

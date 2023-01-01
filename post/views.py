@@ -17,7 +17,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def category(request, category_slug):
-    articles = Post.objects.filter(slug=category_slug).order_by('-publication_date')
+    articles = Post.objects.filter(status='published').order_by('-publication_date')
     categories = Category.objects.all()
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
@@ -32,7 +32,7 @@ def category(request, category_slug):
     return HttpResponse(template.render(context, request))
 
 def tags(request, tag_slug):
-    articles = Post.objects.filter(slug=tag_slug).order_by('-publication_date')
+    articles = Post.objects.filter(status='published').order_by('-publication_date')
     categories = Category.objects.all()
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
