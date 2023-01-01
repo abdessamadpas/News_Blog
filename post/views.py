@@ -19,8 +19,10 @@ def index(request):
 def category(request, category_slug):
     articles = Post.objects.filter(status='published').order_by('-publication_date')
     categories = Category.objects.all()
+
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
+        category_name = category.title
         articles = articles.filter(category=category)
 
     template = loader.get_template('category.html')
@@ -28,6 +30,7 @@ def category(request, category_slug):
     context = {
         'articles': articles,
         'categories': categories,
+        'category_name': category_name,
     }
     return HttpResponse(template.render(context, request))
 
