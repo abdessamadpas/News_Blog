@@ -46,7 +46,7 @@ class Post(models.Model):
     picture = models.ImageField(upload_to='uploads/%Y/%m/%d', verbose_name='picture')
     content = models.TextField(verbose_name='content')
     author = models.CharField( max_length=50, default = 'Anonymous', verbose_name='author')
-    tags = models.ManyToManyField('Tag', blank=True)
+    tags = models.ManyToManyField(Tag)
     
     class Meta:
         verbose_name = 'posts'

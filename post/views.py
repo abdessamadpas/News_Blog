@@ -40,20 +40,24 @@ def tags(request, tag_slug):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         articles = articles.filter(tags=tag)
+        tag_name = tag.title
 
     template = loader.get_template('tags.html')
     
     context = {
         'articles': articles,
         'categories': categories,
+        'tag_name': tag_name,
     }
     return HttpResponse(template.render(context, request))
 
-def PostDetail(request, slug):
-    article = get_object_or_404(Post, slug=slug)
-    template = loader.get_template('post_detail.html')
+def PostDetail(request, detail_post_slug):
+    article = get_object_or_404(Post, slug=detail_post_slug)
+    post_categoy = article.category
+    template = loader.get_template('post_details.html')
     
     context = {
         'article': article,
+        'post_categoy': post_categoy,
     }
     return HttpResponse(template.render(context, request))

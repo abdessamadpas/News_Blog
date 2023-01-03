@@ -1,47 +1,13 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Parallax Template - Materialize</title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{%static 'css/materialize.css' %} " type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{%static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  
-<!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-</ul>
-<nav>
-  <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Logo</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <!-- Dropdown Trigger -->
-      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">categories<i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-  </div>
-</nav>
-        
-
+{% extends "base.html" %}
+{% block banner %}
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
     
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="{{article.picture.url}}" alt="Unsplashed background img 1"></div>
   </div>
-
-
+{% endblock banner %}
+{% block content %}
   <div class="container">
     <div class="section">
       <div class="row">
@@ -51,26 +17,21 @@
               <li class="collection-item avatar">
                 <i class="material-icons circle">account_circle</i>
                 <span class="title" style='font-size: 20px; font-weight: bold;'>Category</span>
-                <span class="title"  style='font-size: 18px;'>Technology</span>
-                <span class='title secondary-content'> Date  dd/mm/yy</span>
-                <p> author</p>
+                <span class="title"  style='font-size: 18px;'>{{post_category}}</span>
+                <span class='title secondary-content'> Date  {{article.publication_date}}</span>
+                <p> {{article.author}}</p>
               </li>
             </ul>
             <div class="card-panel">
-              <h2 class='header'>Title</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                 Lorem Ipsum has been the industry's
-                 standard dummy text ever since the 1500s, </p>
-              <p>when an unknown printer took a galley of type and scrambled it to make a type
-                 specimenbook. It has survived not only fivecenturies, but also the leap into
-                   popularised in the 1960s with the release of Letraset sheets
-                   containing Lorem Ipsum passages, and more recently with desktop publishing 
-                   software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <h2 class='header'>{{article.title}}</h2>
+              <p>{{article.content}}</p>
             </div>
             <div class='divider'></div>
             <div class="card-action">
              <span style='font-size:20px' class='title'>tags :</a></span>
-             <div class="chip">   Jane Doe</div>
+             {% for tag in article.tags.all %}
+             <div class="chip"> <a href="{{tag.get_absolute_url}}">{{tag.title}}</a></div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -80,51 +41,4 @@
     </div>
   </div>
 
-
-
-
-
-  <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
-</html>
+{% endblock content %}
