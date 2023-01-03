@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Want to send us a message ?</h4>
+<div class="divider"></div>
+<br>
+<div class="row">
+  <form class="col s12" method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s6">
+        {{ form.name }}
+        {{ form.name.errors }}
+        <label for="email">name</label>
+      </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        {{ form.email }}
+        {{ form.email.errors }}
+        
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        
+        <div class="input-field inline">
+          {{ form.message }}
+          {{ form.message.errors }}
+          <label for="email_inline">message</label>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from django.template import loader
 from post.forms import ContactForm
-from .models import *
+from post.models import Post, Category, Tag, Contact
 from django.utils import timezone
 # Create your views here.
 def index(request):
@@ -63,17 +63,26 @@ def PostDetail(request, detail_post_slug):
     }
     return HttpResponse(template.render(context, request))
 
-def Contact(request):
+def Contact_page(request):
+
+    contact = Contact.objects.all()
+    print(contact)
     if request.method == 'POST':
-       form = ContactForm(request.POST)
-       if form.is_valid():
-            msg =form.save(commit=False)
-            msg.contact_date = timezone.now()
-            msg.save()
-            return HttpResponseRedirect('contactsuccess')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact_form = form.save(commit=False)
+            contact_form.message_date = timezone.now()
+            contact_form.save()
+            return redirect('contact_success')
     else:
         form = ContactForm()
     context = {
         'form': form,
     }
+    
     return render(request, 'contact.html', context)
+
+#static website for the form contact
+
+def ContactSuccess(request):
+	return render(request, 'contactSuccess.html',)
