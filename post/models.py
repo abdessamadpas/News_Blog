@@ -56,3 +56,15 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100, verbose_name='name')
+    email = models.EmailField(max_length=100, verbose_name='email')
+    contact_date = models.DateTimeField()
+    message = models.TextField(verbose_name='message')
+    
+    class Meta:
+        verbose_name = 'contacts'
+        verbose_name_plural = 'contact'
+    def __str__(self):
+        return self.name + ' ' + self.email
