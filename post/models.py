@@ -5,7 +5,7 @@ from django.urls import reverse
 
 STATUS_CHOISES=(
     ('draft', 'Draft'), 
-('published', 'Published')
+    ('published', 'Published')
 )
 
 
@@ -62,7 +62,10 @@ class Contact(models.Model):
     email = models.EmailField()
     message_date = models.DateTimeField()
     message = models.TextField()
-    
+
+    class Meta:
+        verbose_name = 'contacts'
+        verbose_name_plural = 'contact'
     class Meta:
         verbose_name = 'contacts'
         verbose_name_plural = 'contact'

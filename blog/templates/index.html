@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h4>latest posts</h4><hr>
+<h4>latest posts</h4>
+<div class="divider"></div>
 <!-- image card-->
 <div class="row">
   {% for article in articles %}
@@ -12,7 +13,7 @@
         <span class="card-title">{{article.title}}</span>
       </div>
       <div class="card-content">
-        <p>{{article.content}}</p>
+        <p> {{ article.content|truncatechars:250 | safe }}</p>
       </div>
       <div class="card-action">
         <a href="{{article.get_absolute_url}}">read more</a>
@@ -20,7 +21,5 @@
     </div>
   </div>
   {% endfor %}
-
-
   </div>
 {% endblock content %}
