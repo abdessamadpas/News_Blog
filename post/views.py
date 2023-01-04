@@ -4,15 +4,22 @@ from django.template import loader
 from post.forms import ContactForm
 from post.models import Post, Category, Tag, Contact
 from django.utils import timezone
+from django.core.paginator import Paginator
+
 # Create your views here.
 def index(request):
     #articles = Post.objects.filter(status='published').order_by('-publication_date')
     articles = Post.objects.order_by('-publication_date')
     categories = Category.objects.all()
+    #TODO: pagination
+    pagination = Paginator(articles, 2)
+    page_number = request.GET.get('page')
+    articles_paginated = pagination.get_page(page_number)
+
     template = loader.get_template('index.html')
     
     context = {
-        'articles': articles,
+        'articles': articles_paginated,
         'categories': categories,
     }
     return HttpResponse(template.render(context, request))
